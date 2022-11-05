@@ -1,6 +1,7 @@
-const logoutBtn = document.querySelector('#logoutNavEl');
+const logoutBtn = document.querySelector('#logoutBtn');
 
-async function logout() {
+async function logout(event) {
+    event.preventDefault();
     const response = await fetch('/api/users/logout', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' }

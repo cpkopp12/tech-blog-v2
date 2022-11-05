@@ -56,7 +56,15 @@ router.post('/', (req, res) => {
         email: req.body.email,
         password: req.body.password
     })
-        .then(dbData => res.json(dbData))
+        .then(dbData => {
+            req.session.save(() => {
+                req.session.user_id = dbData.id;
+                req.session.username = dbData.username;
+                req.session.loggedIn = true;
+
+                res.json(dbData);
+            });
+        })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -82,12 +90,29 @@ router.post('/login', (req,res) => {
                 res.status(400).json({ message: 'Incorrect password!' });
                 return;
             }
-            
-            res.json({ user: dbData, meesage:'You are logged in!' });
+            //declare and save session data for user
+            req.session.save(() => {
+                req.session.user_id = dbData.id;
+                req.session.username = dbData.username;
+                req.session.loggedIn = true;
+
+                res.json({ user: dbData, meesage:'You are logged in!' });
+            });
             
         });
 });
-//logout
+
+//logout: /api/users/logout
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+});
+
 
 //update user: /api/users/:id
 router.put('/:id', (req,res) => {

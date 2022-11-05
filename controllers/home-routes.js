@@ -5,6 +5,7 @@ const { User, Post, Comment } =require('../models');
 
 //HOMEROUTES ==========================
 router.get('/', (req, res) => {
+    console.log(req.session);
     Post.findAll({
         attributes: ['id', 'post_text', 'title', 'created_at'],
         include: [
@@ -32,6 +33,15 @@ router.get('/', (req, res) => {
             res.status(500).json(err);
         })
 });
+
+//login route: /login
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    res.render('login');
+})
 
 //EXPORT ROUTER ------
 module.exports = router;
