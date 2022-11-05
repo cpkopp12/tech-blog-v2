@@ -33,10 +33,10 @@ router.get('/:postid', (req, res) =>{
 //create comment: /api/comments/
 router.post('/', (req, res) => {
     //check if user loggedIn
-    //if (req.session.loggedIn) {
+    if (req.session.loggedIn) {
         Comment.create({
             comment_text: req.body.comment_text,
-            user_id: req.body.user_id,
+            user_id: req.session.user_id,
             post_id: req.body.post_id
         })
             .then(dbData => res.json(dbData))
@@ -44,11 +44,11 @@ router.post('/', (req, res) => {
                 console.log(err);
                 res.status(400).json(err);
             })
-   /* } else {
+    } else {
         //if not loggedIn send message
         res.status(404).json({ message: 'User not logged in' });
         return;
-    }*/
+    }
 });
 
 //delete comment: /api/comments/:id
