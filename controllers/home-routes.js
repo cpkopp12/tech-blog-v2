@@ -5,7 +5,6 @@ const { User, Post, Comment } = require('../models');
 
 //HOMEROUTES ==========================
 router.get('/', (req, res) => {
-    console.log(req.session);
     Post.findAll({
         attributes: ['id', 'post_text', 'title', 'created_at'],
         include: [
@@ -26,7 +25,7 @@ router.get('/', (req, res) => {
         .then(dbData => {
             //unpack dbData object
             const posts = dbData.map(post => post.get({ plain: true }))
-            res.render('homepage', { posts });
+            res.render('homepage', { posts, loggedIn: req.session.loggedIn });
         })
         .catch(err => {
             console.log(err);
@@ -70,7 +69,7 @@ router.get('/post/:id', (req, res) => {
             //unpack dbData
             const post = dbData.get({ plain: true });
 
-            res.render('single-post', { post });
+            res.render('single-post', { post, loggedIn: req.session.loggedIn });
         })
         .catch(err => {
             console.log(err);

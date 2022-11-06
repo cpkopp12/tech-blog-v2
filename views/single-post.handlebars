@@ -7,19 +7,21 @@
             <a href="/post/{{post.id}}" class="btn btn-primary">{{post.comments.length}} comment(s)</a>
         </div>
     </div>
-
-    <form id="commentForm" class="card">
-        <h5 class="card-header">Add A Comment!</h5>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <textarea id="commentFormText" name="comment-body"></textarea>  
-            </li>
-            <li class="list-group-item">
-                <button id="commentFormBtn" type="submit" class="btn btn-primary">add comment</button>
-            </li>
-        </ul>
-    </form>
+    {{#if loggedIn}}
+        <form id="commentForm" class="card">
+            <h5 class="card-header">Add A Comment!</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <textarea id="commentFormText" name="comment-body"></textarea>  
+                </li>
+                <li class="list-group-item">
+                    <button id="commentFormBtn" type="submit" class="btn btn-primary">add comment</button>
+                </li>
+            </ul>
+        </form>
+    {{/if}}
 </div>
+
 {{#if post.comments.length}}
     <div class="container">
         <h4>Comment(s) on {{post.title}}</h4>
@@ -33,6 +35,8 @@
         {{/each}}
     </div>
 {{/if}}
-<script src="/javascript/comment.js"></script>
+{{#if loggedIn}}
+    <script src="/javascript/comment.js"></script>
+{{/if}}
 
 
