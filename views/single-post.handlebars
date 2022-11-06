@@ -1,12 +1,5 @@
 <div class="container">
-    <div class="card">
-        <h5 class="card-header">{{post.user.username}} on {{post.created_at}}</h5>
-        <div class="card-body">
-            <h5 class="card-title">{{post.title}}</h5>
-            <p class="card-text">{{post.post_text}}</p>
-            <a href="/post/{{post.id}}" class="btn btn-primary">{{post.comments.length}} comment(s)</a>
-        </div>
-    </div>
+    {{> post-info post }}
     {{#if loggedIn}}
         <form id="commentForm" class="card">
             <h5 class="card-header">Add A Comment!</h5>
@@ -24,10 +17,10 @@
 
 {{#if post.comments.length}}
     <div class="container">
-        <h4>Comment(s) on {{post.title}}</h4>
+        <h4>{{format_plural "Comment" post.comments.length}} on {{post.title}}</h4>
         {{#each post.comments}}
             <div class="card">
-                <h5 class="card-header">{{user.username}} on {{created_at}}</h5>
+                <h5 class="card-header">{{user.username}} on {{format_date created_at}}</h5>
                 <div class="card-body">
                     <p>{{comment_text}}</p>
                 </div>
