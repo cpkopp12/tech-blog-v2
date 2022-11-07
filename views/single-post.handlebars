@@ -1,11 +1,12 @@
 <div class="container">
     {{> post-info post }}
     {{#if loggedIn}}
-        <form id="commentForm" class="card">
+        <form id="commentForm" class="card mt-2 mb-2">
             <h5 class="card-header">Add A Comment!</h5>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <textarea id="commentFormText" name="comment-body"></textarea>  
+                    <label for="commentFormText">Comment Text</label>
+                    <textarea id="commentFormText" class="form-control" name="comment-body"></textarea>  
                 </li>
                 <li class="list-group-item">
                     <button id="commentFormBtn" type="submit" class="btn btn-primary">add comment</button>
@@ -16,7 +17,7 @@
 </div>
 
 {{#if post.comments.length}}
-    <div class="container">
+    <div class="container mt-1">
         <h4>{{format_plural "Comment" post.comments.length}} on {{post.title}}</h4>
         {{#each post.comments}}
             <div class="card">

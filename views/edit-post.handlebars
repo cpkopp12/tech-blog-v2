@@ -1,0 +1,51 @@
+<div class="container mt-2 mb-2">
+    <a href="/dashboard">&larr; Return to dashboard</a>
+    <form id="editPostForm" class="card mt-2">
+        <h5 class="card-header">Edit Post</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <label for="editPostTitle">Post Title</label>
+                <input id="editPostTitle" class="form-control" name="post-title" type="text" value="{{post.title}}" />
+            </li>
+            <li class="list-group-item">
+                <label for="editPostText">Post Text</label>
+                <textarea id="editPostText" class="form-control" name="post-text" >{{post.post_text}}</textarea>
+            </li>
+            <li class="list-group-item">
+                <button type="submit" class="btn btn-primary">Save Post</button>
+                <button type="button" id="deletePostBtn" class="btn btn-danger">Delete Post</button>
+            </li>
+        </ul>
+        
+    </form>
+    <form id="commentForm" class="card mt-2 mb-2">
+        <h5 class="card-header">Add A New Comment</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <label for="commentFormText">Comment Text</label>
+                <textarea id="commentFormText" class="form-control" name="commentEdit-body"></textarea>  
+            </li>
+            <li class="list-group-item">
+                <button id="commentFormBtn" type="submit" class="btn btn-primary">add comment</button>
+            </li>
+        </ul>
+    </form>
+</div>
+
+{{#if post.comments.length}}
+    <div class="container mt-1">
+        <h4>{{format_plural "Comment" post.comments.length}} on {{post.title}}</h4>
+        {{#each post.comments}}
+            <div class="card">
+                <h5 class="card-header">{{user.username}} on {{format_date created_at}}</h5>
+                <div class="card-body">
+                    <p>{{comment_text}}</p>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+{{/if}}
+
+<script src="/javascript/edit-post.js"></script>
+<script src="/javascript/delete-post.js"></script>
+<script src="/javascript/comment.js"></script>
