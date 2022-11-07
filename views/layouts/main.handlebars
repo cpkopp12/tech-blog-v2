@@ -16,10 +16,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                 
-                  
-                  <!-- <a class="nav-item nav-link" href="/dashboard">Dashboard</a>-->
                 {{#if loggedIn}}
+                    <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
                     <button class="nav-item btn" type="button" id="logoutBtn">Logout</button> 
                 {{else}}
                     <a class="nav-item nav-link" href="/login">Login</a>
