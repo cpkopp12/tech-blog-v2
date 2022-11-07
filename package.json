@@ -9,7 +9,7 @@
     "main": "server.js",
     "scripts": {
         "test": "jest",
-        "start": "npm server.js",
+        "start": "node server.js",
         "seeds": "node seeds/index.js"
     },
     "author": "",
