@@ -7,6 +7,7 @@ const { User, Post, Comment } = require('../models');
 router.get('/', (req, res) => {
     Post.findAll({
         attributes: ['id', 'post_text', 'title', 'created_at'],
+        order: [['created_at','DESC']],
         include: [
             {
                 model: Comment,
