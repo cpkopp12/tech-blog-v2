@@ -11,7 +11,9 @@ const helpers = require('./utils/helpers');
 
 const sess = {
     secret: 'Super secret secret',
-    cookie: {},
+    cookie: {
+        expires: 300000  //should expire after 5 min
+    },
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
