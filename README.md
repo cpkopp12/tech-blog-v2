@@ -21,12 +21,12 @@ A blogging website where tech people can post all their fun tech things and leav
 
 ## Installation
 
-If you are installing it to a local device instead of using the deployed applicaiton, you will first need to sed up .env 
+If you are installing it to a local device instead of using the deployed applicaiton, you will first need to set up a .env 
 file corresponding to the connection.js file and your SQL database's information.
 
 ## Usage
 
-User is logged out if idle after 5 minutes.
+User is logged out if idle after 5 minutes, loosing access to the dashboard and the ability to leave comments.
 
 ## Credits
 
